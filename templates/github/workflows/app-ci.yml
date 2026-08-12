@@ -1,0 +1,99 @@
+# Copy into your APPLICATION repo as .github/workflows/ci.yml
+# Then mark these jobs as required status checks on main.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint · Typecheck · Unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm run typecheck --if-present
+      - run: npm test --if-present
+
+  integration:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    if: ${{ hashFiles('**/docker-compose.yml', '**/compose.yaml', '**/vitest.integration.*') != '' || true }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run test:integration --if-present
+
+  dependency-audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run security:audit --if-present
+      - name: npm audit (fallback)
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm audit --audit-level=high
+        continue-on-error: false
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  production-check:
+    name: Production check (P0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run production-check
+        run: |
+          if [ -f scripts/production-check.mjs ]; then
+            node scripts/production-check.mjs
+          elif [ -f production-app-standard/scripts/production-check.mjs ]; then
+            node production-app-standard/scripts/production-check.mjs --root .
+          else
+            echo "Copy scripts/production-check.mjs from production-app-standard"
+            exit 1
+          fi
+
+  e2e:
+    name: E2E / smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run test:e2e --if-present

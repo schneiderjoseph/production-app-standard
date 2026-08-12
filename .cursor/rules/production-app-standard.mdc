@@ -1,12 +1,15 @@
 ---
-description: Enforce production-app-standard P0/P1 engineering rules
+description: Enforce production-app-standard Policy/Check/Enforcement rules
 alwaysApply: true
 ---
 
-When writing or reviewing application code:
+When writing or reviewing application code against this standard:
 
-1. Follow `AGENTS.md`.
-2. Use matching `docs/**` and `checklists/**` for the touched domain.
-3. Treat P0 security/authz/backup/payment controls as blockers.
-4. Prefer fixing production gaps over feature chrome.
-5. Never commit secrets, bypass authz, or skip migrations.
+1. Follow `AGENTS.md` as a work contract (workflow + output contract).
+2. Read `PRINCIPLES.md`: complexity must be earned; every dependency is a liability.
+3. Use matching `docs/**` and `checklists/**` for the touched domain.
+4. Treat P0 security/authz/backup/payment controls as blockers.
+5. Never claim production ready / Gold unless `production-check` has no P0 FAIL and residual risk is listed.
+6. Prefer fixing production gaps over feature chrome.
+7. Never commit secrets, bypass authz, or skip migrations.
+8. Map security work through `docs/security/ASVS_REGISTRY.md` when adding controls.

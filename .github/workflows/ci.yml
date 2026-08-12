@@ -1,5 +1,4 @@
-# Stub workflow for *this* documentation repo.
-# Adopting application repos should implement the full pipeline from docs/devops/CI_CD.md
+# Level 3 — Enforcement for *this* standard repository
 name: ci
 
 on:
@@ -8,13 +7,26 @@ on:
   pull_request:
 
 jobs:
-  docs:
+  standard-integrity:
+    name: Standard integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check required files exist
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Required governance files
         run: |
           test -f README.md
           test -f AGENTS.md
+          test -f PRINCIPLES.md
+          test -f LEVELS.md
+          test -f MATURITY.md
           test -f checklists/production.md
           test -f docs/security/SECURITY.md
+          test -f docs/security/ASVS_REGISTRY.md
+          test -f docs/security/ASVS_5.0/V4_ACCESS_CONTROL.md
+          test -f scripts/production-check.mjs
+          test -f templates/github/workflows/app-ci.yml
+      - name: Production readiness engine (standard-repo mode)
+        run: node scripts/production-check.mjs

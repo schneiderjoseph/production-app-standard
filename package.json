@@ -1,0 +1,13 @@
+{
+  "name": "production-app-standard",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Production engineering standard: policy, checks, and CI enforcement",
+  "scripts": {
+    "production-check": "node scripts/production-check.mjs",
+    "check": "node scripts/production-check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

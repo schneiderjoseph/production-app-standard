@@ -1,0 +1,12 @@
+---
+description: Enforce production-app-standard P0/P1 engineering rules
+alwaysApply: true
+---
+
+When writing or reviewing application code:
+
+1. Follow `AGENTS.md`.
+2. Use matching `docs/**` and `checklists/**` for the touched domain.
+3. Treat P0 security/authz/backup/payment controls as blockers.
+4. Prefer fixing production gaps over feature chrome.
+5. Never commit secrets, bypass authz, or skip migrations.

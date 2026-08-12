@@ -18,8 +18,10 @@ This standard is intentionally built on recognized sources. Prefer the primary d
 ## Web & accessibility
 
 - [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/)
+- [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/)
 - HTTP semantics / status codes
 - [OpenAPI Specification](https://www.openapis.org/)
+- UX/UI operational rules: companion **design-system-standard** (WCAG, NN/g, GOV.UK, Carbon, etc. — see its `REFERENCE-SOURCES.md`)
 
 ## Supply chain & DevOps
 

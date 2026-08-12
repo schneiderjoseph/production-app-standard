@@ -73,8 +73,8 @@ Passing tests alone is **not** Gold maturity. See `MATURITY.md`.
 | CORS, headers, XSS/SQLi, rate limits, secrets | `docs/security/` + `checklists/security.md` |
 | Schema, migrations, indexes, backups | `docs/database/` |
 | Endpoints, validation, versioning, webhooks | `docs/backend/API.md` |
-| UI states, forms, XSS, storage | `docs/frontend/` |
-| Keyboard / WCAG | `docs/frontend/ACCESSIBILITY.md` |
+| UI states, forms, XSS, storage | `docs/frontend/` + companion **design-system-standard** |
+| Keyboard / WCAG / UX-UI MUST rules | `docs/frontend/ACCESSIBILITY.md` + **design-system-standard** (`AGENTS.md`, `accessibility/`, `ux/`) |
 | Unit / integration / E2E / CI gates | `docs/testing/`, `docs/devops/CI_CD.md` |
 | Environments, Docker, deploy, rollback | `docs/devops/` |
 | Logs, metrics, alerts, incidents | `docs/observability/` |
@@ -99,6 +99,16 @@ Passing tests alone is **not** Gold maturity. See `MATURITY.md`.
 - New dependencies (justification or none): ...
 ```
 
+## UX / UI compliance
+
+All user-facing interfaces **MUST** also comply with the companion standard:
+
+→ [`design-system-standard`](https://github.com/schneiderjoseph/design-system-standard)
+
+Mandatory areas: UX principles, UI consistency, accessibility, responsive behavior, forms, navigation, feedback/empty/loading/error states, design tokens, component consistency.
+
+Pretty UI does **not** waive engineering P0s in this repo.
+
 ## Definition of Done (every feature)
 
-Use [`checklists/release.md`](checklists/release.md) — at minimum: authz, validation, errors, logging, tests, docs, CI green for required gates.
+Use [`checklists/release.md`](checklists/release.md) — at minimum: authz, validation, errors, logging, tests, docs, CI green for required gates + design-system-standard MUST rules for UI surfaces.

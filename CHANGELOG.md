@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 — 2026-08-12
+
+- Link companion **design-system-standard** for UX/UI/a11y compliance from README, AGENTS, frontend UX, and reference standards
+
 ## 0.2.0 — 2026-08-12
 
 ### Operational standard (Policy → Check → Enforcement)

@@ -14,6 +14,7 @@ POLICY (docs/)  →  CHECK (scripts/production-check)  →  ENFORCEMENT (GitHub 
 | **Check** | Production readiness engine | `scripts/production-check.mjs` |
 | **Enforcement** | Merge-blocking CI | `templates/github/workflows/app-ci.yml` + branch protection |
 | **Security spine** | OWASP ASVS mapping | `docs/security/ASVS_5.0/`, `ASVS_REGISTRY.md` |
+| **UX / UI** | Companion design standard | [`design-system-standard`](https://github.com/schneiderjoseph/design-system-standard) |
 | **Agents** | Work contract | `AGENTS.md` |
 | **Maturity** | Bronze → Platinum | `MATURITY.md` |
 

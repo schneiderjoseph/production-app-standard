@@ -6,16 +6,10 @@ Use this repo as the engineering standard for every new project. Humans and AI c
 
 ## What this is
 
-- Verifiable requirements (checklists), not vague opinions
+- Verifiable engineering requirements (checklists + domain docs)
 - Security baseline aligned with **OWASP ASVS** and **OWASP Top 10**
-- Full coverage beyond security: architecture, database, API, frontend, testing, DevOps, observability, backup/DR, privacy, payments, AI features
-- Agent-ready: `AGENTS.md` + Cursor rules so AI cannot “wing it”
-
-## What this is not
-
-- Not a starter app / boilerplate
-- Not a substitute for reading OWASP primary sources
-- Not legal advice — apply privacy/compliance controls that match your product and jurisdiction
+- Coverage beyond security: architecture, database, API, frontend, testing, DevOps, observability, backup/DR, privacy, payments, AI features
+- Agent-ready: `AGENTS.md` + Cursor rules for consistent enforcement
 
 ## Quick start
 
